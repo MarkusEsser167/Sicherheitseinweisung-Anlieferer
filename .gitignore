@@ -1,0 +1,12 @@
+# Zwischenschritte der Schrifterzeugung. Gebraucht wird zur Laufzeit nur
+# fonts/dejavu.js (eingecheckt); die TTFs laedt scripts/make_font.py bei Bedarf
+# selbst wieder herunter.
+fonts/*.ttf
+
+# Excel-Sperrdateien
+~$*.xlsx
+
+# Betriebssystem
+Thumbs.db
+desktop.ini
+.DS_Store

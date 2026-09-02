@@ -1,0 +1,371 @@
+/*
+ * Gestaltung fuer Tablet und Smartphone.
+ *
+ * Leitgedanke: Der Nutzer steht mit Handschuhen am LKW, oft bei schlechtem
+ * Licht. Deshalb grosse Trefferflaechen (mindestens 48 px), kraeftige Kontraste
+ * und keine Bedienelemente, die auf Hover angewiesen sind.
+ */
+
+:root {
+  --green: #0f5c4f;
+  --green-dark: #0b241f;
+  --green-light: #e6f2ef;
+  --ink: #111827;
+  --muted: #6b7280;
+  --line: #d5dbdf;
+  --bg: #f4f6f7;
+  --card: #ffffff;
+  --ok: #15803d;
+  --warn: #b45309;
+  --danger: #b91c1c;
+  --radius: 14px;
+  --tap: 48px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
+  -webkit-text-size-adjust: 100%;
+}
+
+.app-shell {
+  max-width: 720px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+/* ---------- Kopf- und Fussleiste ---------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-top));
+  padding-top: max(10px, env(safe-area-inset-top));
+  background: var(--green);
+  color: #fff;
+  min-height: var(--tap);
+}
+
+.topbar-site { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+.topbar-label { font-size: 12px; opacity: 0.8; }
+.topbar-site strong { font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.topbar-flag { display: flex; }
+
+.actionbar {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  background: var(--card);
+  border-top: 1px solid var(--line);
+}
+
+.actionbar .btn-primary { margin-left: auto; }
+
+.site-tag {
+  font-size: 13px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.progress {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--bg);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+
+.progress.is-complete { color: var(--ok); background: #dcfce7; }
+
+/* ---------- Knoepfe ---------- */
+
+.btn-primary,
+.btn-secondary {
+  min-height: var(--tap);
+  padding: 0 22px;
+  border: 0;
+  border-radius: var(--radius);
+  font-size: 17px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.btn-primary { background: var(--green); color: #fff; }
+.btn-primary:disabled { background: #b9c4c1; color: #f1f5f4; cursor: not-allowed; }
+.btn-primary:active:not(:disabled) { background: var(--green-dark); }
+
+.btn-secondary {
+  background: var(--card);
+  color: var(--green);
+  border: 2px solid var(--green);
+}
+
+.btn-link {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  padding: 8px 4px;
+  min-height: var(--tap);
+  cursor: pointer;
+}
+
+.btn-log {
+  display: block;
+  margin: 32px auto 8px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* ---------- Startseite ---------- */
+
+.home { padding: 24px 16px 32px; }
+.home-title { margin: 0; font-size: 26px; text-align: center; }
+.home-sub { margin: 4px 0 0; text-align: center; color: var(--muted); font-size: 14px; }
+.home-hint { margin: 18px 0 16px; text-align: center; font-weight: 600; }
+
+.flag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 12px;
+}
+
+.flag-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 10px 12px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.flag-btn:active { background: var(--green-light); border-color: var(--green); }
+
+/* Umbrechen statt abschneiden: "Українська" und "Slovenčina" muessen vollstaendig
+   lesbar sein - der Fahrer erkennt seine Sprache sonst nicht wieder. */
+.flag-name { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
+
+.flag {
+  width: 46px;
+  height: 31px;
+  flex: 0 0 auto;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  display: block;
+}
+
+.flag-sm { width: 34px; height: 23px; }
+
+/* ---------- Allgemeine Seite ---------- */
+
+.page { flex: 1; padding: 20px 16px 28px; }
+.page-title { margin: 0; font-size: 24px; }
+.page-sub { margin: 2px 0 14px; color: var(--muted); }
+
+.hint {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  background: var(--green-light);
+  border-left: 4px solid var(--green);
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.section-title { margin: 26px 0 10px; font-size: 18px; }
+
+.error-box {
+  margin: 20px;
+  padding: 16px;
+  background: #fee2e2;
+  border-radius: var(--radius);
+  color: var(--danger);
+}
+
+/* ---------- Regelliste ---------- */
+
+.rules { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+
+.rule {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.rule.is-done { border-color: var(--ok); background: #f6fdf8; }
+.rule-icon { width: 44px; height: 44px; flex: 0 0 auto; }
+.rule-body { min-width: 0; flex: 1; }
+.rule-text { margin: 0 0 10px; }
+
+.rule-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--tap);
+  font-weight: 700;
+  color: var(--green);
+  cursor: pointer;
+}
+
+.rule-check input {
+  width: 28px;
+  height: 28px;
+  accent-color: var(--ok);
+  flex: 0 0 auto;
+}
+
+.rule.is-done .rule-check { color: var(--ok); }
+
+/* ---------- Formularfelder ---------- */
+
+.field { display: block; margin-bottom: 18px; }
+.field-label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 15px; }
+.field-label em { color: var(--danger); font-style: normal; }
+
+.field input,
+.search {
+  width: 100%;
+  min-height: var(--tap);
+  padding: 10px 14px;
+  font: inherit;
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.field input:focus,
+.search:focus { outline: none; border-color: var(--green); }
+
+#plate { text-transform: uppercase; font-weight: 700; letter-spacing: 0.04em; }
+
+.search { margin-bottom: 14px; }
+
+.sigpad {
+  width: 100%;
+  height: 170px;
+  background: var(--card);
+  border: 2px dashed var(--line);
+  border-radius: var(--radius);
+  touch-action: none; /* verhindert Scrollen, waehrend unterschrieben wird */
+  display: block;
+}
+
+.sig-clear { display: block; margin-left: auto; color: var(--muted); }
+
+.confirm-box {
+  padding: 16px;
+  background: var(--green-light);
+  border: 1px solid var(--green);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+}
+
+.confirm-text { margin: 0; font-weight: 700; }
+.confirm-de { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
+
+/* ---------- Standortliste ---------- */
+
+.loc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+
+.loc-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  min-height: var(--tap);
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.loc-btn.is-current { border-color: var(--green); background: var(--green-light); }
+.loc-btn:active { background: var(--green-light); }
+.loc-name { font-weight: 600; }
+.loc-meta { font-size: 13px; color: var(--muted); }
+.loc-empty { padding: 20px; text-align: center; color: var(--muted); }
+
+/* ---------- Protokoll ---------- */
+
+.log-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+
+.log-item {
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.log-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.log-meta { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+.badge { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.badge-ok { background: #dcfce7; color: var(--ok); }
+.badge-warn { background: #fef3c7; color: var(--warn); }
+
+/* ---------- Abschlussseite ---------- */
+
+.done { text-align: center; display: flex; flex-direction: column; align-items: center; padding-top: 40px; }
+.done-mark { width: 96px; height: 96px; }
+.done-mark svg { width: 100%; height: 100%; }
+.done-mark.is-ok { color: var(--ok); }
+.done-mark.is-warn { color: var(--warn); }
+
+.done-title { margin: 16px 0 6px; font-size: 26px; }
+.done-text { margin: 0 0 22px; color: var(--muted); max-width: 34ch; }
+
+.done-facts {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 0 26px;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-align: left;
+}
+
+.done-facts > div { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; }
+.done-facts dt { color: var(--muted); font-size: 14px; }
+.done-facts dd { margin: 0; font-weight: 700; text-align: right; }
+
+.done .btn-secondary,
+.done .btn-primary { width: 100%; max-width: 420px; margin-bottom: 12px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .flag-btn, .rule, .loc-btn { transition: background-color 0.12s ease, border-color 0.12s ease; }
+}
