@@ -60,10 +60,13 @@ Neu erzeugen (nur nötig, wenn Sprachen mit anderen Schriftsystemen dazukommen):
 pip install fonttools brotli && python scripts/make_font.py
 ```
 
-## Mailversand einrichten
+## Mailversand
 
-Ohne diesen Schritt läuft die App vollständig, lädt das PDF aber nur herunter,
-statt es zu verschicken (Protokollstatus "offen").
+**Eingerichtet und aktiv** (seit 02.09.2026) — `MAIL_SCRIPT_URL` in `js/mail.js`
+zeigt auf die deployte Web-App. Ohne Netz fällt die App weiter auf den
+PDF-Download zurück (Protokollstatus "offen").
+
+Neu aufsetzen ginge so:
 
 1. [script.google.com](https://script.google.com) → neues Projekt → Inhalt von
    `apps-script/Code.gs` einfügen.

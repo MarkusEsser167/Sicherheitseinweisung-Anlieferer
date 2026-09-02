@@ -10,7 +10,8 @@
  * den Fallback (PDF-Download + vorbereiteter Mailentwurf).
  */
 
-export const MAIL_SCRIPT_URL = "HIER_DIE_APPS_SCRIPT_EXEC_URL_EINTRAGEN";
+export const MAIL_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbzQe4sEqJEwdhDE6g_uh5csxYJKpMuY9rX_jiKSG3cV7EBzJRTsYZ3bI-sCqJNFuiIC/exec";
 
 function isConfigured() {
   return /^https:\/\/script\.google\.com\//.test(MAIL_SCRIPT_URL);
