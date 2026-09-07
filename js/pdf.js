@@ -9,7 +9,7 @@
  */
 
 import { DEJAVU_REGULAR_B64, DEJAVU_BOLD_B64 } from "../fonts/dejavu.js";
-import { WEGO_LOGO_B64, VTI_LOGO_B64, LOGO_RATIO } from "./logos.js";
+import { LOGO_B64, LOGO_RATIO } from "./logos.js";
 import { findLanguage } from "./i18n.js";
 
 const MARGIN = 15;
@@ -18,15 +18,14 @@ const PAGE_H = 297;
 const CONTENT_W = PAGE_W - MARGIN * 2;
 const FONT = "DejaVu";
 
-// Logos oben rechts, an der Oberkante des Titels ausgerichtet.
-const LOGO_H = 7;
-const LOGO_GAP = 3.5;
-const WEGO_W = LOGO_H * LOGO_RATIO.wego;
-const VTI_W = LOGO_H * LOGO_RATIO.vti;
-const LOGO_BLOCK_W = WEGO_W + LOGO_GAP + VTI_W;
+// Kombiniertes Logo oben rechts, an der Oberkante des Titels ausgerichtet.
+// Es ist deutlich breiter als hoch (rund 5:1), deshalb wird die Breite aus der
+// gewuenschten Hoehe berechnet und nicht umgekehrt.
+const LOGO_H = 8;
+const LOGO_W = LOGO_H * LOGO_RATIO;
 
-// Restbreite fuer Titel und Untertitel, damit sie nicht unter die Logos laufen.
-const TITLE_W = CONTENT_W - LOGO_BLOCK_W - 8;
+// Restbreite fuer Titel und Untertitel, damit sie nicht unter das Logo laufen.
+const TITLE_W = CONTENT_W - LOGO_W - 8;
 
 const ACCENT = [15, 92, 79];
 const BOX_BG = [240, 247, 245];
@@ -85,16 +84,13 @@ function pngSize(dataUrl) {
   }
 }
 
-/** Zeichnet die beiden Firmenlogos buendig an den rechten Satzspiegelrand. */
-function drawLogos(doc, topY) {
-  const vtiX = PAGE_W - MARGIN - VTI_W;
-  const wegoX = vtiX - LOGO_GAP - WEGO_W;
+/** Zeichnet das Firmenlogo buendig an den rechten Satzspiegelrand. */
+function drawLogo(doc, topY) {
   try {
-    doc.addImage(WEGO_LOGO_B64, "PNG", wegoX, topY, WEGO_W, LOGO_H, undefined, "FAST");
-    doc.addImage(VTI_LOGO_B64, "PNG", vtiX, topY, VTI_W, LOGO_H, undefined, "FAST");
+    doc.addImage(LOGO_B64, "PNG", PAGE_W - MARGIN - LOGO_W, topY, LOGO_W, LOGO_H, undefined, "FAST");
   } catch (err) {
-    // Ein Problem mit den Logos darf das Dokument nicht unbrauchbar machen.
-    console.warn("Logos konnten nicht eingebettet werden", err);
+    // Ein Problem mit dem Logo darf das Dokument nicht unbrauchbar machen.
+    console.warn("Logo konnte nicht eingebettet werden", err);
   }
 }
 
@@ -140,7 +136,7 @@ export function buildEinweisungPdf(entry) {
   let y = MARGIN;
 
   // --- Kopf ---------------------------------------------------------------
-  drawLogos(doc, y - 4.5);
+  drawLogo(doc, y - 5);
 
   doc.setFont(FONT, "bold");
   doc.setFontSize(16);

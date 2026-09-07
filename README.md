@@ -78,7 +78,7 @@ der deutsche Text. Die Niederlassung kann so nachvollziehen, was bestätigt
 wurde, ohne die Fremdsprache zu lesen. Bei Auswahl "Deutsch" entfällt die
 Wiederholung. Alle 15 Sprachen passen auf eine A4-Seite.
 
-Enthalten: die Firmenlogos oben rechts, ein hervorgehobener Kopfblock mit
+Enthalten: das kombinierte wego/vti-Logo oben rechts, ein hervorgehobener Kopfblock mit
 Standort/Zeitpunkt/Sprache, die acht abgehakten Punkte, der Bestätigungssatz,
 ein hervorgehobener Block mit Fahrername und Kennzeichen sowie die Unterschrift.
 
@@ -170,8 +170,8 @@ Oder über die Vorschau-Konfiguration `sicherheitseinweisung-pwa` in
 
 Icons neu bauen: `pip install pillow && python scripts/make_icons.py`
 
-Logos neu einbetten (nach einem Logowechsel): `python scripts/make_logos.py` —
-die Quellpfade stehen oben im Skript.
+Logo neu einbetten (nach einem Logowechsel): `python scripts/make_logos.py` —
+der Quellpfad steht oben im Skript.
 
 ## Aufbau
 
@@ -181,7 +181,7 @@ css/styles.css          Gestaltung (große Trefferflächen, kräftige Kontraste)
 js/app.js               Hash-Router
 js/i18n.js              alle Übersetzungen (offizielle Regeltexte!)
 js/flags.js             Flaggen als Inline-SVG
-js/logos.js             Firmenlogos als Base64-PNG fuer den PDF-Kopf (generiert)
+js/logos.js             wego/vti-Logo als Base64-PNG fuer den PDF-Kopf (generiert)
 js/locations.js         52 Niederlassungen + Mailadressen (generiert)
 js/settings.js          gespeicherter Standort (localStorage)
 js/session.js           Zustand der laufenden Einweisung (nur im Speicher)
@@ -192,7 +192,7 @@ js/mail.js              Versand über Apps-Script-Webhook
 js/views/               die einzelnen Seiten
 fonts/dejavu.js         eingebettete Unicode-Schrift (generiert)
 apps-script/Code.gs     Google-Apps-Script-Webhook
-scripts/                Generatoren für Schrift, Standorte, Icons, Logos
+scripts/                Generatoren für Schrift, Standorte, Icons, Logo
 ```
 
 Flaggen sind bewusst **kein** Emoji: Windows stellt die Flaggen-Emojis nicht
