@@ -12,8 +12,11 @@ import { flagSvg } from "../flags.js";
 import { getSession, startSession } from "../session.js";
 import { escapeHtml } from "./home.js";
 
-/** Symbole zu den sechs Punkten - sie entsprechen den Piktogrammen des Aushangs. */
-const ICONS = ["speed", "parking", "ppe", "distance", "noentry", "cabin"];
+/**
+ * Symbole zu den Punkten - sie entsprechen den Piktogrammen des Aushangs.
+ * "staff" hat kein Vorbild im Aushang, weil Punkt 7 dort (noch) nicht steht.
+ */
+const ICONS = ["speed", "parking", "ppe", "distance", "noentry", "cabin", "staff"];
 
 const ICON_SVG = {
   speed:
@@ -32,7 +35,7 @@ const ICON_SVG = {
   distance:
     '<circle cx="20" cy="20" r="16" fill="#fbc02d"/>' +
     '<path d="M8 20h24M8 20l4-3v6zM32 20l-4-3v6z" stroke="#111" stroke-width="2" fill="#111"/>' +
-    '<text x="20" y="32" text-anchor="middle" font-size="9" font-weight="700" fill="#111">3 m</text>',
+    '<text x="20" y="32" text-anchor="middle" font-size="9" font-weight="700" fill="#111">2 m</text>',
   noentry:
     '<circle cx="20" cy="20" r="16" fill="#d32f2f"/>' +
     '<rect x="8" y="17" width="24" height="6" rx="1" fill="#fff"/>',
@@ -40,6 +43,15 @@ const ICON_SVG = {
     '<circle cx="20" cy="20" r="16" fill="#2e7d32"/>' +
     '<path d="M10 24V17l4-5h9l3 5h4v7z" fill="#fff"/>' +
     '<circle cx="15" cy="26" r="2.5" fill="#fff"/><circle cx="26" cy="26" r="2.5" fill="#fff"/>',
+
+  // Lagerpersonal: Person mit erhobener Hand - blaues Rund wie die uebrigen
+  // Gebotszeichen, damit der neue Punkt sich in die Reihe einfuegt.
+  staff:
+    '<circle cx="20" cy="20" r="16" fill="#1565c0"/>' +
+    '<circle cx="18" cy="13.5" r="3.4" fill="#fff"/>' +
+    '<path d="M12 30v-7a6 6 0 0 1 12 0v7z" fill="#fff"/>' +
+    '<path d="M26 20V13" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>' +
+    '<circle cx="26" cy="10.5" r="2" fill="#fff"/>',
 };
 
 export async function renderBriefing(root, router, langCode) {

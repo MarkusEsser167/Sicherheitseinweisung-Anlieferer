@@ -10,8 +10,8 @@ Ersetzt den bisherigen Papieraushang samt Unterschriftenzettel.
 ## Ablauf für den Fahrer
 
 1. **Startseite** – Sprachauswahl über Flaggen (15 Sprachen).
-2. **Regelseite** – die sechs Punkte in der gewählten Sprache; jeder Punkt wird
-   **einzeln** bestätigt. "Weiter" ist gesperrt, bis alle sechs bestätigt sind.
+2. **Regelseite** – die sieben Punkte in der gewählten Sprache; jeder Punkt wird
+   **einzeln** bestätigt. "Weiter" ist gesperrt, bis alle sieben bestätigt sind.
 3. **Abschlussseite** – **KFZ-Kennzeichen** und **Fahrername** sind Pflicht,
    dazu eine Unterschrift per Finger. "Bestätigen und senden" ist gesperrt,
    solange ein Pflichtfeld leer ist.
@@ -30,12 +30,19 @@ Slovenčina, Čeština, Türkçe, Українська, Български, Ру
 weil der offizielle Aushang auch auf Ungarisch vorliegt und die Aufnahme nichts
 gekostet hat. Nicht gewünscht? Den `hu`-Block in `js/i18n.js` löschen.
 
-> **Wichtig:** Regeltexte, Bestätigungssatz und Feldbeschriftungen sind
-> **wortgleich** aus den offiziellen PDFs
-> `BETRIEBSGELAENDE_REGELN_<SPRACHE>_*.pdf` übernommen — das ist der rechtlich
-> relevante Text. Nur die Bedienoberfläche (Knöpfe, Hinweise) wurde für diese
-> App übersetzt. Ändern sich die Aushänge, müssen die Texte in `js/i18n.js`
-> nachgezogen werden.
+> **Wichtig:** Regeltexte, Bestätigungssatz und Feldbeschriftungen stammen aus
+> den offiziellen PDFs `BETRIEBSGELAENDE_REGELN_<SPRACHE>_*.pdf` — das ist der
+> rechtlich relevante Text. Nur die Bedienoberfläche (Knöpfe, Hinweise) wurde
+> für diese App übersetzt. Ändern sich die Aushänge, müssen die Texte in
+> `js/i18n.js` nachgezogen werden.
+
+> **Abweichungen vom Aushang** (Stand 07.09.2026, auf Anweisung des
+> Auftraggebers): Der Sicherheitsabstand zu Flurförderzeugen wurde in Punkt 4
+> von **3,00 m auf 2,00 m** geändert, und **Punkt 7** ("Den Anweisungen des
+> Lagerpersonals ist Folge zu leisten") kam neu hinzu. Für Punkt 7 gibt es
+> keinen offiziellen Aushangtext — die 15 Fassungen sind eigene Übersetzungen.
+> **Solange die Papieraushänge nicht nachgezogen sind, weichen App und Aushang
+> inhaltlich voneinander ab.**
 
 ## Das PDF
 
@@ -44,8 +51,18 @@ der deutsche Text. Die Niederlassung kann so nachvollziehen, was bestätigt
 wurde, ohne die Fremdsprache zu lesen. Bei Auswahl "Deutsch" entfällt die
 Wiederholung. Alle 15 Sprachen passen auf eine A4-Seite.
 
-Enthalten: Standort, Zeitpunkt, Sprache, die sechs abgehakten Punkte,
-Bestätigungssatz, Fahrername, Kennzeichen und Unterschrift.
+Enthalten: die Firmenlogos oben rechts, ein hervorgehobener Kopfblock mit
+Standort/Zeitpunkt/Sprache, die sieben abgehakten Punkte, der Bestätigungssatz,
+ein hervorgehobener Block mit Fahrername und Kennzeichen sowie die Unterschrift.
+
+Im Fahrerblock steht jede Angabe auf **genau einer Zeile**: Beschriftung links,
+Wert rechts in fester Spalte. Weil die zweisprachigen Beschriftungen je nach
+Sprache unterschiedlich lang sind (russisch misst
+"Регистрационный номер транпортного средства / KFZ-Kennzeichen" rund 75 mm),
+wird die Schrift bei Bedarf verkleinert statt umbrochen.
+
+Die Unterschrift wird unter Wahrung ihres Seitenverhältnisses eingepasst — das
+Unterschriftenfeld ist je nach Gerät unterschiedlich breit.
 
 ### Warum eine eingebettete Schrift
 
@@ -126,6 +143,9 @@ Oder über die Vorschau-Konfiguration `sicherheitseinweisung-pwa` in
 
 Icons neu bauen: `pip install pillow && python scripts/make_icons.py`
 
+Logos neu einbetten (nach einem Logowechsel): `python scripts/make_logos.py` —
+die Quellpfade stehen oben im Skript.
+
 ## Aufbau
 
 ```
@@ -134,6 +154,7 @@ css/styles.css          Gestaltung (große Trefferflächen, kräftige Kontraste)
 js/app.js               Hash-Router
 js/i18n.js              alle Übersetzungen (offizielle Regeltexte!)
 js/flags.js             Flaggen als Inline-SVG
+js/logos.js             Firmenlogos als Base64-PNG fuer den PDF-Kopf (generiert)
 js/locations.js         52 Niederlassungen + Mailadressen (generiert)
 js/settings.js          gespeicherter Standort (localStorage)
 js/session.js           Zustand der laufenden Einweisung (nur im Speicher)
@@ -144,7 +165,7 @@ js/mail.js              Versand über Apps-Script-Webhook
 js/views/               die einzelnen Seiten
 fonts/dejavu.js         eingebettete Unicode-Schrift (generiert)
 apps-script/Code.gs     Google-Apps-Script-Webhook
-scripts/                Generatoren für Schrift, Standorte, Icons
+scripts/                Generatoren für Schrift, Standorte, Icons, Logos
 ```
 
 Flaggen sind bewusst **kein** Emoji: Windows stellt die Flaggen-Emojis nicht

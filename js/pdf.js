@@ -9,6 +9,7 @@
  */
 
 import { DEJAVU_REGULAR_B64, DEJAVU_BOLD_B64 } from "../fonts/dejavu.js";
+import { WEGO_LOGO_B64, VTI_LOGO_B64, LOGO_RATIO } from "./logos.js";
 import { findLanguage } from "./i18n.js";
 
 const MARGIN = 15;
@@ -16,6 +17,19 @@ const PAGE_W = 210;
 const PAGE_H = 297;
 const CONTENT_W = PAGE_W - MARGIN * 2;
 const FONT = "DejaVu";
+
+// Logos oben rechts, an der Oberkante des Titels ausgerichtet.
+const LOGO_H = 7;
+const LOGO_GAP = 3.5;
+const WEGO_W = LOGO_H * LOGO_RATIO.wego;
+const VTI_W = LOGO_H * LOGO_RATIO.vti;
+const LOGO_BLOCK_W = WEGO_W + LOGO_GAP + VTI_W;
+
+// Restbreite fuer Titel und Untertitel, damit sie nicht unter die Logos laufen.
+const TITLE_W = CONTENT_W - LOGO_BLOCK_W - 8;
+
+const ACCENT = [15, 92, 79];
+const BOX_BG = [240, 247, 245];
 
 let fontRegistered = false;
 
@@ -48,6 +62,62 @@ function drawCheck(doc, x, y) {
   doc.setLineWidth(0.2);
 }
 
+/**
+ * Liest Breite und Hoehe aus dem IHDR-Kopf eines PNG-Data-URLs.
+ *
+ * Die PDF-Erzeugung laeuft synchron; ein Image-Objekt zu laden waere
+ * asynchron. Der PNG-Kopf steht aber an fester Stelle (Bytes 16-23), lasst
+ * sich also direkt aus den ersten Base64-Zeichen herauslesen.
+ *
+ * @returns {{w:number,h:number}|null}
+ */
+function pngSize(dataUrl) {
+  try {
+    const b64 = String(dataUrl).split(",")[1];
+    const bin = atob(b64.slice(0, 64));
+    const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
+    const view = new DataView(bytes.buffer);
+    const w = view.getUint32(16);
+    const h = view.getUint32(20);
+    return w > 0 && h > 0 ? { w, h } : null;
+  } catch (err) {
+    return null;
+  }
+}
+
+/** Zeichnet die beiden Firmenlogos buendig an den rechten Satzspiegelrand. */
+function drawLogos(doc, topY) {
+  const vtiX = PAGE_W - MARGIN - VTI_W;
+  const wegoX = vtiX - LOGO_GAP - WEGO_W;
+  try {
+    doc.addImage(WEGO_LOGO_B64, "PNG", wegoX, topY, WEGO_W, LOGO_H, undefined, "FAST");
+    doc.addImage(VTI_LOGO_B64, "PNG", vtiX, topY, VTI_W, LOGO_H, undefined, "FAST");
+  } catch (err) {
+    // Ein Problem mit den Logos darf das Dokument nicht unbrauchbar machen.
+    console.warn("Logos konnten nicht eingebettet werden", err);
+  }
+}
+
+/**
+ * Setzt die Schriftgroesse so weit herunter, bis der Text in `maxWidth` passt.
+ *
+ * Gebraucht fuer die zweisprachigen Beschriftungen im Fussblock: sie sollen je
+ * EINE Zeile ergeben, sind aber je nach Sprache unterschiedlich lang - russisch
+ * etwa "Регистрационный номер транпортного средства / KFZ-Kennzeichen".
+ * Umbrechen waere hier haesslicher als ein Punkt kleinere Schrift.
+ *
+ * @returns {number} die tatsaechlich gesetzte Groesse
+ */
+function fitFontSize(doc, text, maxWidth, startSize, minSize) {
+  let size = startSize;
+  doc.setFontSize(size);
+  while (size > minSize && doc.getTextWidth(text) > maxWidth) {
+    size -= 0.25;
+    doc.setFontSize(size);
+  }
+  return size;
+}
+
 function formatDateTime(iso) {
   const d = new Date(iso);
   const p = (n) => String(n).padStart(2, "0");
@@ -70,12 +140,14 @@ export function buildEinweisungPdf(entry) {
   let y = MARGIN;
 
   // --- Kopf ---------------------------------------------------------------
+  drawLogos(doc, y - 4.5);
+
   doc.setFont(FONT, "bold");
   doc.setFontSize(16);
   doc.text(lang.title, MARGIN, y);
   y += 7;
   doc.setFontSize(12);
-  const subLines = doc.splitTextToSize(lang.subtitle, CONTENT_W);
+  const subLines = doc.splitTextToSize(lang.subtitle, TITLE_W);
   doc.text(subLines, MARGIN, y);
   y += subLines.length * 5.5;
 
@@ -83,32 +155,54 @@ export function buildEinweisungPdf(entry) {
     doc.setFont(FONT, "normal");
     doc.setFontSize(9);
     doc.setTextColor(110);
-    const deSub = doc.splitTextToSize(`${de.title} – ${de.subtitle}`, CONTENT_W);
+    const deSub = doc.splitTextToSize(`${de.title} – ${de.subtitle}`, TITLE_W);
     doc.text(deSub, MARGIN, y);
     y += deSub.length * 4;
     doc.setTextColor(0);
   }
 
-  y += 2;
-  doc.setDrawColor(180);
-  doc.line(MARGIN, y, PAGE_W - MARGIN, y);
-  y += 7;
+  // Untertitel duerfen den Logoblock nicht ueberlaufen.
+  y = Math.max(y, MARGIN + LOGO_H + 4);
+  y += 3;
 
   // --- Kopfdaten ----------------------------------------------------------
-  doc.setFontSize(10);
+  // Als abgesetzter Kasten mit farbiger Kante: Standort, Zeitpunkt und Sprache
+  // sind die Angaben, nach denen die Niederlassung das Dokument einordnet.
+  // Beschriftungen nur dort zweisprachig, wo die Fassungen sich unterscheiden -
+  // sonst stuende in der deutschen Fassung "Datum / Datum".
+  const dual = (foreign, german) => (bilingual ? `${foreign} / ${german}` : german);
+
   const headRows = [
-    ["Standort / Site", `${entry.locationName} (${entry.locationId})`],
-    [`${lang.labels.date} / ${de.labels.date}`, formatDateTime(entry.createdAt)],
-    ["Sprache / Language", lang.name],
+    [dual(lang.ui.location, de.ui.location), `${entry.locationName} (${entry.locationId})`],
+    [dual(lang.labels.date, de.labels.date), formatDateTime(entry.createdAt)],
+    // Fuer "Sprache" gibt es keine Uebersetzung in den Aushaengen, daher fest
+    // deutsch/englisch statt einer erfundenen Fassung.
+    [bilingual ? "Language / Sprache" : "Sprache", lang.name],
   ];
+  const headBoxH = headRows.length * 6 + 6;
+
+  doc.setFillColor(...BOX_BG);
+  doc.setDrawColor(...ACCENT);
+  doc.setLineWidth(0.3);
+  doc.roundedRect(MARGIN, y, CONTENT_W, headBoxH, 2, 2, "FD");
+  // Kraeftige Kante links als optischer Anker
+  doc.setFillColor(...ACCENT);
+  doc.rect(MARGIN, y + 0.6, 1.6, headBoxH - 1.2, "F");
+
+  let hy = y + 6;
   headRows.forEach(([label, value]) => {
-    doc.setFont(FONT, "bold");
-    doc.text(String(label), MARGIN, y);
+    doc.setTextColor(70);
     doc.setFont(FONT, "normal");
-    doc.text(String(value), MARGIN + 48, y);
-    y += 5.5;
+    doc.setFontSize(9);
+    doc.text(String(label), MARGIN + 5, hy);
+    doc.setTextColor(0);
+    doc.setFont(FONT, "bold");
+    doc.setFontSize(11);
+    doc.text(String(value), MARGIN + 48, hy);
+    hy += 6;
   });
-  y += 4;
+  doc.setTextColor(0);
+  y += headBoxH + 7;
 
   // --- Regelwerk ----------------------------------------------------------
   doc.setFont(FONT, "bold");
@@ -196,30 +290,63 @@ export function buildEinweisungPdf(entry) {
   y += boxH + 10;
 
   // --- Fahrerdaten und Unterschrift --------------------------------------
-  doc.setFontSize(10);
+  // Ebenfalls als hervorgehobener Kasten, mit fester Spalte fuer die Werte:
+  // Beschriftung links, Wert rechts, jeweils GENAU eine Zeile. Zu lange
+  // Beschriftungen werden verkleinert statt umbrochen (siehe fitFontSize).
   const dataRows = [
-    [`${lang.ui.driverName} / ${de.ui.driverName}`, entry.driverName],
-    [`${lang.labels.plate} / ${de.labels.plate}`, entry.plate],
+    [dual(lang.ui.driverName, de.ui.driverName), entry.driverName],
+    [dual(lang.labels.plate, de.labels.plate), entry.plate],
   ];
-  dataRows.forEach(([label, value]) => {
-    doc.setFont(FONT, "bold");
-    const labelLines = doc.splitTextToSize(String(label), 70);
-    doc.text(labelLines, MARGIN, y);
-    doc.setFont(FONT, "normal");
-    doc.text(String(value || "–"), MARGIN + 75, y);
-    y += Math.max(6, labelLines.length * 4.6);
-  });
+  // Die Beschriftungsspalte muss die laengste zweisprachige Fassung tragen:
+  // russisch "Регистрационный номер транпортного средства / KFZ-Kennzeichen"
+  // misst bei 6 pt rund 75 mm. Mit 82 mm bleibt Luft, und fuer den Wert stehen
+  // immer noch gut 90 mm bereit.
+  const VALUE_X = MARGIN + 87;
+  const LABEL_W = VALUE_X - MARGIN - 5;
+  const dataBoxH = dataRows.length * 7.5 + 5;
 
-  y += 6;
+  doc.setFillColor(...BOX_BG);
+  doc.setDrawColor(...ACCENT);
+  doc.setLineWidth(0.3);
+  doc.roundedRect(MARGIN, y, CONTENT_W, dataBoxH, 2, 2, "FD");
+  doc.setFillColor(...ACCENT);
+  doc.rect(MARGIN, y + 0.6, 1.6, dataBoxH - 1.2, "F");
+
+  let dy = y + 6.5;
+  dataRows.forEach(([label, value]) => {
+    doc.setFont(FONT, "normal");
+    doc.setTextColor(70);
+    fitFontSize(doc, String(label), LABEL_W, 9, 6);
+    doc.text(String(label), MARGIN + 5, dy);
+
+    doc.setFont(FONT, "bold");
+    doc.setTextColor(0);
+    fitFontSize(doc, String(value || "–"), PAGE_W - MARGIN - VALUE_X - 4, 12, 8);
+    doc.text(String(value || "–"), VALUE_X, dy);
+    dy += 7.5;
+  });
+  doc.setTextColor(0);
+  y += dataBoxH + 8;
   doc.setFont(FONT, "bold");
-  doc.text(`${lang.labels.signature} / ${de.labels.signature}`, MARGIN, y);
+  doc.text(dual(lang.labels.signature, de.labels.signature), MARGIN, y);
   y += 3;
 
   const sigW = 80;
   const sigH = 28;
   if (entry.signature) {
     try {
-      doc.addImage(entry.signature, "PNG", MARGIN, y, sigW, sigH, undefined, "FAST");
+      // Seitenverhaeltnis erhalten: das Unterschriftenfeld ist je nach Geraet
+      // unterschiedlich breit, stur auf 80x28 mm gezogen waere die Unterschrift
+      // verzerrt. Sie wird linksbuendig in den Rahmen eingepasst.
+      const size = pngSize(entry.signature);
+      let w = sigW;
+      let h = sigH;
+      if (size) {
+        const scale = Math.min(sigW / size.w, sigH / size.h);
+        w = size.w * scale;
+        h = size.h * scale;
+      }
+      doc.addImage(entry.signature, "PNG", MARGIN, y + (sigH - h), w, h, undefined, "FAST");
     } catch (err) {
       // Ungueltiges Bild soll das Dokument nicht unbrauchbar machen.
       console.warn("Unterschrift konnte nicht eingebettet werden", err);
