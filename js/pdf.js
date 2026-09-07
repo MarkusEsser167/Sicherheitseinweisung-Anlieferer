@@ -228,7 +228,9 @@ export function buildEinweisungPdf(entry) {
       deLines = doc.splitTextToSize(de.rules[i], textW);
     }
 
-    const blockH = lines.length * 4.8 + deLines.length * 3.8 + 4;
+    // Zeilenabstaende bewusst knapp: mit acht Punkten und der laengsten Sprache
+    // (Russisch) passt das Dokument sonst nicht mehr auf eine Seite.
+    const blockH = lines.length * 4.8 + deLines.length * 3.6 + 3.2;
 
     if (y + blockH > PAGE_H - MARGIN - 60) {
       doc.addPage();
@@ -246,10 +248,10 @@ export function buildEinweisungPdf(entry) {
       doc.setFontSize(8);
       doc.setTextColor(120);
       doc.text(deLines, textX, y);
-      y += deLines.length * 3.8;
+      y += deLines.length * 3.6;
       doc.setTextColor(0);
     }
-    y += 4;
+    y += 3.2;
   });
 
   // --- Bestaetigung -------------------------------------------------------
@@ -332,12 +334,19 @@ export function buildEinweisungPdf(entry) {
   y += 3;
 
   const sigW = 80;
-  const sigH = 28;
+
+  // Hoehe an den Rest der Seite anpassen: bei der laengsten Sprache (Russisch,
+  // acht Punkte, alles zweisprachig) bleibt unten nur wenig Platz, und die
+  // Unterschriftslinie darf nicht in die Fusszeile laufen. 10 mm Reserve fuer
+  // die Fusszeile, darunter wird das Feld kleiner statt die Seite zu brechen.
+  const FOOTER_RESERVE = 12;
+  const sigH = Math.max(14, Math.min(25, PAGE_H - MARGIN - FOOTER_RESERVE - y));
+
   if (entry.signature) {
     try {
       // Seitenverhaeltnis erhalten: das Unterschriftenfeld ist je nach Geraet
-      // unterschiedlich breit, stur auf 80x28 mm gezogen waere die Unterschrift
-      // verzerrt. Sie wird linksbuendig in den Rahmen eingepasst.
+      // unterschiedlich breit, stur auf feste Masse gezogen waere die
+      // Unterschrift verzerrt. Sie wird linksbuendig in den Rahmen eingepasst.
       const size = pngSize(entry.signature);
       let w = sigW;
       let h = sigH;

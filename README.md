@@ -10,8 +10,8 @@ Ersetzt den bisherigen Papieraushang samt Unterschriftenzettel.
 ## Ablauf für den Fahrer
 
 1. **Startseite** – Sprachauswahl über Flaggen (15 Sprachen).
-2. **Regelseite** – die sieben Punkte in der gewählten Sprache; jeder Punkt wird
-   **einzeln** bestätigt. "Weiter" ist gesperrt, bis alle sieben bestätigt sind.
+2. **Regelseite** – die acht Punkte in der gewählten Sprache; jeder Punkt wird
+   **einzeln** bestätigt. "Weiter" ist gesperrt, bis alle acht bestätigt sind.
 3. **Abschlussseite** – **KFZ-Kennzeichen** und **Fahrername** sind Pflicht,
    dazu eine Unterschrift per Finger. "Bestätigen und senden" ist gesperrt,
    solange ein Pflichtfeld leer ist.
@@ -36,13 +36,40 @@ gekostet hat. Nicht gewünscht? Den `hu`-Block in `js/i18n.js` löschen.
 > für diese App übersetzt. Ändern sich die Aushänge, müssen die Texte in
 > `js/i18n.js` nachgezogen werden.
 
-> **Abweichungen vom Aushang** (Stand 07.09.2026, auf Anweisung des
-> Auftraggebers): Der Sicherheitsabstand zu Flurförderzeugen wurde in Punkt 4
-> von **3,00 m auf 2,00 m** geändert, und **Punkt 7** ("Den Anweisungen des
-> Lagerpersonals ist Folge zu leisten") kam neu hinzu. Für Punkt 7 gibt es
-> keinen offiziellen Aushangtext — die 15 Fassungen sind eigene Übersetzungen.
+> **Abweichungen vom Unterweisungsbogen** (Stand 07.09.2026):
+>
+> - **Punkt 1** ("Beim Lagerbüro melden …") stammt wortgleich vom
+>   **Betriebsgeländeschild**, steht aber nicht auf dem Unterweisungsbogen.
+>   Aufgenommen auf Anregung von HSE (C. Waltschev, Mail vom 04.09.2026).
+> - **Punkt 5:** Abstand zu Flurförderzeugen **3,00 m → 2,00 m**. Der
+>   Unterweisungsbogen nennt 3,00 m, die Live Saving Rules des Hauses dagegen
+>   2 m; HSE hat die 2 m als verbindlich bestätigt.
+> - **Punkt 8** ("Den Anweisungen des Lagerpersonals ist Folge zu leisten") kam
+>   neu hinzu; dafür gibt es keinen offiziellen Aushangtext.
+>
+> Für Punkt 1 und 8 sind die 15 Fassungen eigene Übersetzungen.
 > **Solange die Papieraushänge nicht nachgezogen sind, weichen App und Aushang
 > inhaltlich voneinander ab.**
+
+## Die Schilder
+
+Die Gebots-, Warn- und Verbotszeichen auf der Regelseite sind den Schildern auf
+dem **Betriebsgeländeschild** und dem **Unterweisungsbogen** nachgezeichnet
+(Rückmeldung HSE vom 04.09.2026):
+
+| Punkt | Zeichen |
+|---|---|
+| 1 Lagerbüro melden | blaues Gebotszeichen mit Ausrufezeichen |
+| 2 Geschwindigkeit | rotes Rund mit **15** (nicht 5 — so steht es auf beiden Schildern) |
+| 3 Parken | blaues P — kein Vorbild auf den Schildern, dort teilt sich der Hinweis die Zeile mit der Geschwindigkeit |
+| 4 PSA | **zwei** blaue Gebotszeichen: Fußschutz und Warnweste |
+| 5 Flurförderzeuge | gelbes Warndreieck "Warnung vor Flurförderzeugen" |
+| 6 Zutrittsverbot | rotes Verbotszeichen mit Hand und Gesicht (**nicht** "Einfahrt verboten") |
+| 7 Fahrpersonal | LKW-Symbol, auf dem Aushang ebenfalls kein Verkehrszeichen |
+| 8 Lagerpersonal | blaues Gebotszeichen — kein Vorbild, der Punkt steht dort nicht |
+
+Gezeichnet als Inline-SVG statt als Bilddatei: bleibt auf jedem Gerät scharf und
+funktioniert offline ohne zusätzliche Dateien.
 
 ## Das PDF
 
@@ -52,7 +79,7 @@ wurde, ohne die Fremdsprache zu lesen. Bei Auswahl "Deutsch" entfällt die
 Wiederholung. Alle 15 Sprachen passen auf eine A4-Seite.
 
 Enthalten: die Firmenlogos oben rechts, ein hervorgehobener Kopfblock mit
-Standort/Zeitpunkt/Sprache, die sieben abgehakten Punkte, der Bestätigungssatz,
+Standort/Zeitpunkt/Sprache, die acht abgehakten Punkte, der Bestätigungssatz,
 ein hervorgehobener Block mit Fahrername und Kennzeichen sowie die Unterschrift.
 
 Im Fahrerblock steht jede Angabe auf **genau einer Zeile**: Beschriftung links,

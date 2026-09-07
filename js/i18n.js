@@ -5,12 +5,17 @@
  * offiziellen Aushaengen "BETRIEBSGELAENDE_REGELN_<SPRACHE>_*.pdf". Sie sind der
  * rechtlich relevante Text, den der Anlieferer bestaetigt.
  *
- * ABWEICHUNGEN vom Aushang (Stand 07.09.2026, auf Anweisung des Auftraggebers):
- *  - Punkt 4: Sicherheitsabstand zu Flurfoerderzeugen von 3,00 m auf 2,00 m
- *    geaendert.
- *  - Punkt 7 ("Anweisungen des Lagerpersonals") neu hinzugefuegt; es gibt dafuer
+ * ABWEICHUNGEN vom Unterweisungsbogen (Stand 07.09.2026):
+ *  - Punkt 1 ("Beim Lagerbuero melden ...") stammt wortgleich vom
+ *    BETRIEBSGELAENDESCHILD, steht aber nicht auf dem Unterweisungsbogen.
+ *    Aufgenommen auf Anregung von HSE (C. Waltschev, Mail vom 04.09.2026).
+ *    Die 15 Fassungen sind eigene Uebersetzungen des deutschen Schildtextes.
+ *  - Punkt 5: Sicherheitsabstand zu Flurfoerderzeugen von 3,00 m auf 2,00 m
+ *    geaendert. Der Unterweisungsbogen nennt 3,00 m, die Live Saving Rules des
+ *    Hauses dagegen 2 m - HSE hat die 2 m als verbindlich bestaetigt.
+ *  - Punkt 8 ("Anweisungen des Lagerpersonals") neu hinzugefuegt; es gibt dafuer
  *    keinen offiziellen Aushangtext, die 15 Fassungen sind eigene Uebersetzungen.
- * Solange die Aushaenge nicht nachgezogen sind, weichen App und Papieraushang
+ * Solange die Papieraushaenge nicht nachgezogen sind, weichen App und Aushang
  * inhaltlich voneinander ab.
  *
  * Die Felder unter `ui` sind reine Bedienoberflaeche (Knoepfe, Hinweise) und
@@ -27,6 +32,7 @@ export const LANGUAGES = [
     title: "Anweisung",
     subtitle: "Verhalten auf dem Betriebsgelände",
     rules: [
+      "Beim Lagerbüro melden, zugewiesenen Platz beachten und nicht verlassen (Versicherungsschutz erlischt!)",
       "Auf dem Betriebsgelände ist Schrittgeschwindigkeit zu fahren.",
       "Fahrzeuge dürfen nur auf den dafür gekennzeichneten Flächen abgestellt werden.",
       "Sicherheitsschuhe und Warnwesten sind auf dem gesamten Betriebsgelände zu tragen.",
@@ -69,6 +75,7 @@ export const LANGUAGES = [
     title: "Instructions",
     subtitle: "Behaviour on the factory premises",
     rules: [
+      "Report to the warehouse office, observe the assigned place and do not leave it (insurance cover will lapse!)",
       "On the factory premises, you must drive at walking speed.",
       "Vehicles may be parked on the designated areas only.",
       "Safety shoes and high-visibility jackets must be worn at all times while on the factory premises.",
@@ -111,6 +118,7 @@ export const LANGUAGES = [
     title: "Οδηγίες",
     subtitle: "συμπεριφοράς στον χώρο της εταιρίας",
     rules: [
+      "Να αναγγελθείτε στο γραφείο της αποθήκης, να τηρείτε τη θέση που σας υποδεικνύεται και να μην την εγκαταλείπετε (η ασφαλιστική κάλυψη παύει να ισχύει!)",
       "Να οδηγείτε στον χώρο της εταιρίας με χαμηλότατη ταχύτητα.",
       "Τα αυτοκίνητα οχήματα επιτρέπεται να σταθμεύονται μόνο στους γι΄αυτό τον σκοπό σημασμένους χώρους.",
       "Θα πρέπει να φοράτε υποδήματα ασφαλείας και φωσφοριζέ γιλέκα ασφαλείας σε όλο τον χώρο της εταιρίας.",
@@ -153,6 +161,7 @@ export const LANGUAGES = [
     title: "Istruzioni",
     subtitle: "Comportamento sul suolo aziendale",
     rules: [
+      "Presentarsi all’ufficio del magazzino, rispettare il posto assegnato e non allontanarsi (la copertura assicurativa decade!)",
       "Sul suolo aziendale è obbligatorio procedere a passo d’uomo.",
       "I veicoli possono sostare solo nelle aree contrassegnate.",
       "In tutta l’area aziendale vanno indossate scarpe antinfortunistiche e giubbotti catarifrangenti.",
@@ -195,6 +204,7 @@ export const LANGUAGES = [
     title: "Uputa",
     subtitle: "Ponašanje na terenu pogona",
     rules: [
+      "Javite se u skladišni ured, poštujte dodijeljeno mjesto i ne napuštajte ga (osiguranje prestaje vrijediti!)",
       "Na terenu pogona se mora voziti brzinom koraka.",
       "Vozila se smiju ostavljati samo na za to označenim površinama.",
       "Na čitavom terenu pogona obavezno je nošenje sigurnosnih cipela i signalnog prsluka.",
@@ -237,6 +247,7 @@ export const LANGUAGES = [
     title: "Instructies",
     subtitle: "Gedrag op het bedrijfsterrein",
     rules: [
+      "Meld u bij het magazijnkantoor, houd u aan de toegewezen plaats en verlaat deze niet (de verzekeringsdekking vervalt!)",
       "Op het bedrijfsterrein mag de rijsnelheid maximaal stapvoets zijn.",
       "Voertuigen mogen alleen op de daarvoor aangegeven plaatsen worden geparkeerd.",
       "Op het hele bedrijfsterrein dienen veiligheidsschoenen en veiligheidsvesten te worden gedragen.",
@@ -279,6 +290,7 @@ export const LANGUAGES = [
     title: "Instrukcja",
     subtitle: "Sposób zachowania się na terenie zakładu",
     rules: [
+      "Zgłosić się w biurze magazynu, przestrzegać wyznaczonego miejsca i nie opuszczać go (ochrona ubezpieczeniowa wygasa!)",
       "Na terenie zakładu należy poruszać się prędkością poruszania się pieszego.",
       "Pojazdy można parkować jedynie na powierzchniach, które zostały oznakowane jako powierzchnie parkingowe.",
       "Należy na terenie całego zakładu nosić obuwie ochronne i kamizelki ostrzegawcze.",
@@ -321,6 +333,7 @@ export const LANGUAGES = [
     title: "Instrucţiune",
     subtitle: "comportament în incinta întreprinderii",
     rules: [
+      "Prezentaţi-vă la biroul depozitului, respectaţi locul alocat şi nu îl părăsiţi (asigurarea îşi pierde valabilitatea!)",
       "În incinta întreprinderii se va circula numai cu viteză redusă.",
       "Autovehiculule se vor parca numai pe suprafeţele special marcate.",
       "Purtarea încălţămintei de siguranţă şi a vestelor de avertizare este obligatorie în întreaga incintă a întreprinderii.",
@@ -363,6 +376,7 @@ export const LANGUAGES = [
     title: "Pokyny",
     subtitle: "Správanie v areáli podniku",
     rules: [
+      "Ohláste sa v skladovej kancelárii, dodržiavajte pridelené miesto a neopúšťajte ho (poistné krytie zaniká!)",
       "V areáli podniku sa musí jazdiť pomaly, krokom.",
       "Vozidlá sa smú odstavovať len na vyhradených plochách.",
       "V celom areáli závodu platí povinnosť nosiť bezpečnostnú obuv a reflexné vesty.",
@@ -405,6 +419,7 @@ export const LANGUAGES = [
     title: "Pokyny",
     subtitle: "Pravidla chování v areálu podniku",
     rules: [
+      "Ohlaste se ve skladové kanceláři, dodržujte přidělené místo a neopouštějte je (pojistné krytí zaniká!)",
       "V areálu podniku jezděte krokem.",
       "Vozidla smíte odstavit pouze na vyhrazených plochách.",
       "V celém areálu podniku používejte bezpečnostní obuv a výstražnou vestu.",
@@ -447,6 +462,7 @@ export const LANGUAGES = [
     title: "Talimat",
     subtitle: "İşletme Sahasında Davranış",
     rules: [
+      "Depo ofisine haber verin, size gösterilen yeri dikkate alın ve orayı terk etmeyin (sigorta koruması sona erer!)",
       "İşletme sahasında yürüme hızıyla hareket edilir.",
       "Araçlar ancak işaretlenmiş alanlara bırakılabilir.",
       "Tüm işletme sahasında emniyet ayakkabısı ve emniyet yeleğinin giyilmesi zorunludur.",
@@ -489,6 +505,7 @@ export const LANGUAGES = [
     title: "Вказівки",
     subtitle: "правила поведінки на території підприємства",
     rules: [
+      "Повідомте про себе в офісі складу, дотримуйтеся відведеного місця та не залишайте його (страховий захист втрачає чинність!)",
       "Слід строго дотримуватися швидкості пішоходів.",
       "Ставити автомобілі можна тільки на позначені місця.",
       "Слід носити захисне взуття та сигнальні жилети безпеки на сукупній території підприємства.",
@@ -531,6 +548,7 @@ export const LANGUAGES = [
     title: "Инструкция",
     subtitle: "Поведение на територията на предприятието",
     rules: [
+      "Явете се в офиса на склада, спазвайте определеното място и не го напускайте (застрахователното покритие отпада!)",
       "На територията на предприятието се шофира със съвсем бавна скорост.",
       "Превозните средства трябва да се паркират само на обозначените за целта площи.",
       "На цялата територия на предприятието трябва да се носят предпазни обувки и предупредителна жилетка.",
@@ -573,6 +591,7 @@ export const LANGUAGES = [
     title: "Инструкция",
     subtitle: "по правилам поведения на производственной территории",
     rules: [
+      "Сообщите о себе в офисе склада, соблюдайте отведённое место и не покидайте его (страховая защита прекращается!)",
       "Скорость движения на производственной территории не должна превышать скорость пешехода.",
       "Транспортные средства могут быть припаркованы только в специально обозначенных местах.",
       "На всей производственной территории необходимо носить защитную обувь и светоотражающий жилет.",
@@ -615,6 +634,7 @@ export const LANGUAGES = [
     title: "Utasítás",
     subtitle: "Magatartás az üzemi területen",
     rules: [
+      "Jelentkezzen a raktárirodán, tartsa be a kijelölt helyet és ne hagyja el (a biztosítási védelem megszűnik!)",
       "Az üzemi területen gyalogos tempóban kell közlekedni.",
       "A gépjárműveket kizárólag az arra kijelölt helyeken lehet leparkolni.",
       "A teljes üzemi területen kötelező a biztonsági cipők és biztonsági mellények viselése.",
