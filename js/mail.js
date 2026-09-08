@@ -27,7 +27,9 @@ function blobToBase64(blob) {
 }
 
 function buildSubject(entry) {
-  return `Sicherheitseinweisung ${entry.plate} – ${entry.locationName}`;
+  // Kennzeichen, Fahrername und Standort: damit laesst sich eine Bestaetigung
+  // schon in der Betreffzeile zuordnen, ohne die Mail zu oeffnen.
+  return `Sicherheitseinweisung ${entry.plate} – ${entry.driverName} – ${entry.locationName}`;
 }
 
 function buildBody(entry) {

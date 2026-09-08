@@ -10,7 +10,7 @@
  * installierte Geraete weiter die alte Fassung aus.
  */
 
-const CACHE_NAME = 'sicherheitseinweisung-v5';
+const CACHE_NAME = 'sicherheitseinweisung-v6';
 const PRECACHE = [
   './',
   './index.html',
