@@ -10,6 +10,8 @@
  * den Fallback (PDF-Download + vorbereiteter Mailentwurf).
  */
 
+import { toLatin, hasNonLatinScript } from "./translit.js";
+
 export const MAIL_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbzQe4sEqJEwdhDE6g_uh5csxYJKpMuY9rX_jiKSG3cV7EBzJRTsYZ3bI-sCqJNFuiIC/exec";
 
@@ -29,7 +31,12 @@ function blobToBase64(blob) {
 function buildSubject(entry) {
   // Kennzeichen, Fahrername und Standort: damit laesst sich eine Bestaetigung
   // schon in der Betreffzeile zuordnen, ohne die Mail zu oeffnen.
-  return `Sicherheitseinweisung ${entry.plate} – ${entry.driverName} – ${entry.locationName}`;
+  //
+  // Kyrillische und griechische Namen stehen hier in lateinischer Umschrift -
+  // nach "Ковальчук" kann in einem deutschen Postfach niemand suchen. Der
+  // Originalname bleibt im Mailtext und im PDF erhalten.
+  const name = toLatin(entry.driverName, entry.lang);
+  return `Sicherheitseinweisung ${entry.plate} – ${name} – ${entry.locationName}`;
 }
 
 function buildBody(entry) {
@@ -37,7 +44,11 @@ function buildBody(entry) {
     "Ein Anlieferer hat die Sicherheitseinweisung digital bestätigt.",
     "",
     `Standort:      ${entry.locationName} (${entry.locationId})`,
-    `Fahrer:        ${entry.driverName}`,
+    // Bei nichtlateinischer Schrift zusaetzlich die Umschrift, damit sich der
+    // Name im Text mit dem in der Betreffzeile zusammenbringen laesst.
+    hasNonLatinScript(entry.driverName)
+      ? `Fahrer:        ${entry.driverName}  (${toLatin(entry.driverName, entry.lang)})`
+      : `Fahrer:        ${entry.driverName}`,
     `Kennzeichen:   ${entry.plate}`,
     `Sprache:       ${entry.langName}`,
     `Zeitpunkt:     ${new Date(entry.createdAt).toLocaleString("de-DE")}`,

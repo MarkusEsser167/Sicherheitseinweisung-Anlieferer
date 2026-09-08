@@ -136,6 +136,22 @@ Gmail-Absender an `logistik@wego-vti.de` zeitweise abgewiesen, an
 `muenster@wego-vti.de` dagegen zugestellt. Vor dem Rollout auf alle 52
 Standorte sollte der Versand an ein paar Adressen getestet werden.
 
+### Namen in der Betreffzeile
+
+Der Betreff lautet
+`Sicherheitseinweisung <Kennzeichen> – <Fahrername> – <Standort>`.
+
+Kyrillische und griechische Namen stehen dort in **lateinischer Umschrift**
+(`js/translit.js`) — nach „Ковальчук" kann in einem deutschen Postfach niemand
+suchen, nach „Kovalchuk" schon. Der Originalname bleibt im Mailtext (dort steht
+beides) und im PDF unverändert.
+
+Lateinische Sonderzeichen bleiben absichtlich stehen: „Szczęsny", „Şoför",
+„Đurđević" sind lesbar, und die Suche in Outlook/Exchange ignoriert lateinische
+Diakritika ohnehin. Die Umschrift ist auf Auffindbarkeit ausgelegt, nicht auf
+eine Norm wie ISO 9; ukrainische und bulgarische Eigenheiten (г → h, ъ → a)
+berücksichtigt sie.
+
 ## Standortliste pflegen
 
 `js/locations.js` wird aus `data/niederlassungen.xlsx` erzeugt (Spalten
@@ -189,6 +205,7 @@ js/db.js                Protokoll (IndexedDB)
 js/pdf.js               PDF-Erzeugung (jsPDF + Unicode-Schrift)
 js/signature.js         Unterschriftenfeld
 js/mail.js              Versand über Apps-Script-Webhook
+js/translit.js          Umschrift kyrillischer/griechischer Namen für den Betreff
 js/views/               die einzelnen Seiten
 fonts/dejavu.js         eingebettete Unicode-Schrift (generiert)
 apps-script/Code.gs     Google-Apps-Script-Webhook
