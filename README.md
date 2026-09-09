@@ -9,7 +9,7 @@ Ersetzt den bisherigen Papieraushang samt Unterschriftenzettel.
 
 ## Ablauf für den Fahrer
 
-1. **Startseite** – Sprachauswahl über Flaggen (15 Sprachen).
+1. **Startseite** – Sprachauswahl über Flaggen (17 Sprachen).
 2. **Regelseite** – die acht Punkte in der gewählten Sprache; jeder Punkt wird
    **einzeln** bestätigt. "Weiter" ist gesperrt, bis alle acht bestätigt sind.
 3. **Abschlussseite** – **KFZ-Kennzeichen** und **Fahrername** sind Pflicht,
@@ -28,7 +28,14 @@ ihn nur oben in der Leiste; geändert wird er über "Ändern".
 Deutsch, English, Ελληνικά, Italiano, Hrvatski, Nederlands, Polski, Română,
 Slovenčina, Čeština, Türkçe, Українська, Български, Русский — dazu **Magyar**,
 weil der offizielle Aushang auch auf Ungarisch vorliegt und die Aufnahme nichts
-gekostet hat. Nicht gewünscht? Den `hu`-Block in `js/i18n.js` löschen.
+gekostet hat. Seit 09.09.2026 zusätzlich **Français** und **Español**.
+
+> **Français und Español haben keine offizielle Vorlage.** Für diese beiden
+> Sprachen gibt es keinen Aushang — dort sind *auch* die Regeltexte, der
+> Bestätigungssatz und die Feldbeschriftungen eigene Übersetzungen aus dem
+> Deutschen, nicht nur die Bedienoberfläche. Vor dem produktiven Einsatz sollte
+> HSE sie gegenlesen; erweitert HSE die Aushänge um diese Sprachen, sind die
+> Texte in `js/i18n.js` dagegen zu prüfen.
 
 > **Wichtig:** Regeltexte, Bestätigungssatz und Feldbeschriftungen stammen aus
 > den offiziellen PDFs `BETRIEBSGELAENDE_REGELN_<SPRACHE>_*.pdf` — das ist der
@@ -47,7 +54,7 @@ gekostet hat. Nicht gewünscht? Den `hu`-Block in `js/i18n.js` löschen.
 > - **Punkt 8** ("Den Anweisungen des Lagerpersonals ist Folge zu leisten") kam
 >   neu hinzu; dafür gibt es keinen offiziellen Aushangtext.
 >
-> Für Punkt 1 und 8 sind die 15 Fassungen eigene Übersetzungen.
+> Für Punkt 1 und 8 sind alle Fassungen eigene Übersetzungen.
 > **Solange die Papieraushänge nicht nachgezogen sind, weichen App und Aushang
 > inhaltlich voneinander ab.**
 
@@ -76,7 +83,7 @@ funktioniert offline ohne zusätzliche Dateien.
 Zweisprachig: oben der Text in der Sprache des Fahrers, darunter klein und grau
 der deutsche Text. Die Niederlassung kann so nachvollziehen, was bestätigt
 wurde, ohne die Fremdsprache zu lesen. Bei Auswahl "Deutsch" entfällt die
-Wiederholung. Alle 15 Sprachen passen auf eine A4-Seite.
+Wiederholung. Alle 17 Sprachen passen auf eine A4-Seite.
 
 Enthalten: das kombinierte wego/vti-Logo oben rechts, ein hervorgehobener Kopfblock mit
 Standort/Zeitpunkt/Sprache, die acht abgehakten Punkte, der Bestätigungssatz,

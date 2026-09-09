@@ -99,6 +99,16 @@ const FLAGS = {
   ru: horizontal(["#ffffff", "#0039a6", "#d52b1e"]),
 
   hu: horizontal(["#ce2939", "#ffffff", "#477050"]),
+
+  fr: vertical(["#002395", "#ffffff", "#ed2939"]),
+
+  // Spanien hat ungleiche Streifen (1:2:1), deshalb nicht ueber horizontal().
+  // Ohne Wappen - das ist die zulaessige Zivilflagge und in Knopfgroesse
+  // ohnehin nicht aufloesbar.
+  es:
+    '<rect width="60" height="10" fill="#aa151b"/>' +
+    '<rect y="10" width="60" height="20" fill="#f1bf00"/>' +
+    '<rect y="30" width="60" height="10" fill="#aa151b"/>',
 };
 
 /** Liefert das SVG-Markup einer Flagge; unbekannte Codes ergeben ein neutrales graues Feld. */

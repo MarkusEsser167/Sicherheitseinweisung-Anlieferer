@@ -9,14 +9,20 @@
  *  - Punkt 1 ("Beim Lagerbuero melden ...") stammt wortgleich vom
  *    BETRIEBSGELAENDESCHILD, steht aber nicht auf dem Unterweisungsbogen.
  *    Aufgenommen auf Anregung von HSE (C. Waltschev, Mail vom 04.09.2026).
- *    Die 15 Fassungen sind eigene Uebersetzungen des deutschen Schildtextes.
+ *    Alle Fassungen sind eigene Uebersetzungen des deutschen Schildtextes.
  *  - Punkt 5: Sicherheitsabstand zu Flurfoerderzeugen von 3,00 m auf 2,00 m
  *    geaendert. Der Unterweisungsbogen nennt 3,00 m, die Live Saving Rules des
  *    Hauses dagegen 2 m - HSE hat die 2 m als verbindlich bestaetigt.
  *  - Punkt 8 ("Anweisungen des Lagerpersonals") neu hinzugefuegt; es gibt dafuer
- *    keinen offiziellen Aushangtext, die 15 Fassungen sind eigene Uebersetzungen.
+ *    keinen offiziellen Aushangtext, alle Fassungen sind eigene Uebersetzungen.
  * Solange die Papieraushaenge nicht nachgezogen sind, weichen App und Aushang
  * inhaltlich voneinander ab.
+ *
+ * OHNE offizielle Vorlage: Fuer FRANZOESISCH und SPANISCH gibt es keinen
+ * Aushang. Dort sind AUCH die Regeltexte, der Bestaetigungssatz und die
+ * Feldbeschriftungen eigene Uebersetzungen aus dem Deutschen - anders als bei
+ * den 15 uebrigen Sprachen. Sollte HSE die Aushaenge um diese Sprachen
+ * erweitern, sind die Texte hier dagegen zu pruefen.
  *
  * Die Felder unter `ui` sind reine Bedienoberflaeche (Knoepfe, Hinweise) und
  * wurden fuer diese App uebersetzt.
@@ -669,6 +675,92 @@ export const LANGUAGES = [
       doneOffline: "Nincs kapcsolat – kérjük, mentse el a PDF-et és adja le az irodában.",
       newEntry: "Új oktatás",
       download: "PDF letöltése",
+    },
+  },
+  {
+    code: "fr",
+    name: "Français",
+    title: "Instruction",
+    subtitle: "Comportement sur le site de l’entreprise",
+    rules: [
+      "Se présenter au bureau du dépôt, respecter l’emplacement attribué et ne pas le quitter (la couverture d’assurance prend fin !)",
+      "Sur le site de l’entreprise, il faut rouler au pas.",
+      "Les véhicules ne peuvent être stationnés que sur les surfaces prévues à cet effet.",
+      "Le port de chaussures de sécurité et de gilets de signalisation est obligatoire sur l’ensemble du site.",
+      "Les piétons doivent respecter une distance de sécurité d’au moins 2,00 m par rapport aux chariots de manutention.",
+      "Accès strictement interdit aux zones signalées.",
+      "Le personnel de conduite doit se tenir à un endroit sûr près du véhicule ou dans la cabine, sauf instruction contraire de nos collaborateurs.",
+      "Les instructions du personnel de l’entrepôt doivent être suivies.",
+    ],
+    confirm: "Par la présente, je confirme avoir reçu et compris ces instructions.",
+    labels: { date: "Date", signature: "Signature", plate: "Numéro d’immatriculation" },
+    ui: {
+      chooseLanguage: "Choisir la langue",
+      location: "Site",
+      change: "Modifier",
+      chooseLocation: "Choisir le site",
+      searchLocation: "Rechercher un site …",
+      save: "Enregistrer",
+      locationHint: "Le site reste enregistré sur cet appareil.",
+      readHint: "Veuillez lire et confirmer chaque point.",
+      understood: "Compris",
+      back: "Retour",
+      next: "Suivant",
+      driverData: "Données du conducteur",
+      driverName: "Nom du conducteur",
+      clear: "Effacer",
+      requiredHint: "Veuillez remplir tous les champs obligatoires.",
+      allRulesHint: "Veuillez confirmer tous les points.",
+      submit: "Confirmer et envoyer",
+      sending: "Envoi en cours …",
+      doneTitle: "Merci !",
+      doneText: "Votre confirmation a été envoyée au site.",
+      doneOffline: "Pas de connexion – veuillez enregistrer le PDF et le remettre au bureau.",
+      newEntry: "Nouvelle instruction",
+      download: "Télécharger le PDF",
+    },
+  },
+  {
+    code: "es",
+    name: "Español",
+    title: "Instrucción",
+    subtitle: "Comportamiento en las instalaciones de la empresa",
+    rules: [
+      "Presentarse en la oficina del almacén, respetar el lugar asignado y no abandonarlo (¡la cobertura del seguro se extingue!)",
+      "En las instalaciones de la empresa se debe circular a paso de hombre.",
+      "Los vehículos solo pueden estacionarse en las superficies señalizadas para ello.",
+      "En todas las instalaciones de la empresa es obligatorio llevar calzado de seguridad y chaleco reflectante.",
+      "Los peatones deben mantener una distancia de seguridad de al menos 2,00 m respecto a las carretillas elevadoras.",
+      "Acceso terminantemente prohibido a las zonas señalizadas.",
+      "El personal de conducción debe permanecer en un lugar seguro junto al vehículo o en la cabina, salvo que nuestros empleados indiquen otra cosa.",
+      "Deben seguirse las instrucciones del personal del almacén.",
+    ],
+    confirm: "Por la presente confirmo haber recibido y comprendido las instrucciones.",
+    labels: { date: "Fecha", signature: "Firma", plate: "Matrícula del vehículo" },
+    ui: {
+      chooseLanguage: "Seleccionar idioma",
+      location: "Centro",
+      change: "Cambiar",
+      chooseLocation: "Seleccionar centro",
+      searchLocation: "Buscar centro …",
+      save: "Guardar",
+      locationHint: "El centro permanece guardado en este dispositivo.",
+      readHint: "Por favor, lea y confirme cada punto.",
+      understood: "Entendido",
+      back: "Atrás",
+      next: "Siguiente",
+      driverData: "Datos del conductor",
+      driverName: "Nombre del conductor",
+      clear: "Borrar",
+      requiredHint: "Por favor, rellene todos los campos obligatorios.",
+      allRulesHint: "Por favor, confirme todos los puntos.",
+      submit: "Confirmar y enviar",
+      sending: "Enviando …",
+      doneTitle: "¡Gracias!",
+      doneText: "Su confirmación se ha enviado al centro.",
+      doneOffline: "Sin conexión – guarde el PDF y entréguelo en la oficina.",
+      newEntry: "Nueva instrucción",
+      download: "Descargar PDF",
     },
   },
 ];
