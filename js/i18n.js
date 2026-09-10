@@ -5,11 +5,15 @@
  * offiziellen Aushaengen "BETRIEBSGELAENDE_REGELN_<SPRACHE>_*.pdf". Sie sind der
  * rechtlich relevante Text, den der Anlieferer bestaetigt.
  *
- * ABWEICHUNGEN vom Unterweisungsbogen (Stand 07.09.2026):
+ * ABWEICHUNGEN vom Unterweisungsbogen (Stand 10.09.2026):
  *  - Punkt 1 ("Beim Lagerbuero melden ...") stammt wortgleich vom
  *    BETRIEBSGELAENDESCHILD, steht aber nicht auf dem Unterweisungsbogen.
  *    Aufgenommen auf Anregung von HSE (C. Waltschev, Mail vom 04.09.2026).
  *    Alle Fassungen sind eigene Uebersetzungen des deutschen Schildtextes.
+ *  - Punkt 2: "Schrittgeschwindigkeit" ersetzt durch "angepasste Geschwindigkeit
+ *    (max. 15 km/h)". Festlegung der Fachabteilung vom 10.09.2026: Text und
+ *    Schild (15) widersprachen sich, das Schild bleibt, der Text wird angepasst.
+ *    Alle Fassungen dieses Punkts sind eigene Uebersetzungen.
  *  - Punkt 5: Sicherheitsabstand zu Flurfoerderzeugen von 3,00 m auf 2,00 m
  *    geaendert. Der Unterweisungsbogen nennt 3,00 m, die Live Saving Rules des
  *    Hauses dagegen 2 m - HSE hat die 2 m als verbindlich bestaetigt.
@@ -39,7 +43,7 @@ export const LANGUAGES = [
     subtitle: "Verhalten auf dem Betriebsgelände",
     rules: [
       "Beim Lagerbüro melden, zugewiesenen Platz beachten und nicht verlassen (Versicherungsschutz erlischt!)",
-      "Auf dem Betriebsgelände ist Schrittgeschwindigkeit zu fahren.",
+      "Auf dem Betriebsgelände ist angepasste Geschwindigkeit (max. 15 km/h) zu fahren.",
       "Fahrzeuge dürfen nur auf den dafür gekennzeichneten Flächen abgestellt werden.",
       "Sicherheitsschuhe und Warnwesten sind auf dem gesamten Betriebsgelände zu tragen.",
       "Fußgänger müssen einen Sicherheitsabstand von mindestens 2,00 m zu Flurförderzeugen einhalten.",
@@ -82,7 +86,7 @@ export const LANGUAGES = [
     subtitle: "Behaviour on the factory premises",
     rules: [
       "Report to the warehouse office, observe the assigned place and do not leave it (insurance cover will lapse!)",
-      "On the factory premises, you must drive at walking speed.",
+      "On the factory premises, you must drive at an appropriate speed (max. 15 km/h).",
       "Vehicles may be parked on the designated areas only.",
       "Safety shoes and high-visibility jackets must be worn at all times while on the factory premises.",
       "Pedestrians must maintain a safe distance of at least 2.00 m from industrial trucks.",
@@ -125,7 +129,7 @@ export const LANGUAGES = [
     subtitle: "συμπεριφοράς στον χώρο της εταιρίας",
     rules: [
       "Να αναγγελθείτε στο γραφείο της αποθήκης, να τηρείτε τη θέση που σας υποδεικνύεται και να μην την εγκαταλείπετε (η ασφαλιστική κάλυψη παύει να ισχύει!)",
-      "Να οδηγείτε στον χώρο της εταιρίας με χαμηλότατη ταχύτητα.",
+      "Να οδηγείτε στον χώρο της εταιρίας με προσαρμοσμένη ταχύτητα (μέγ. 15 χλμ./ώρα).",
       "Τα αυτοκίνητα οχήματα επιτρέπεται να σταθμεύονται μόνο στους γι΄αυτό τον σκοπό σημασμένους χώρους.",
       "Θα πρέπει να φοράτε υποδήματα ασφαλείας και φωσφοριζέ γιλέκα ασφαλείας σε όλο τον χώρο της εταιρίας.",
       "Οι πεζοί θα πρέπει να τηρούν μια απόσταση ασφαλείας των τουλάχιστον 2,00 μέτρων από τα αυτοκινούμενα οχήματα χειρισμών.",
@@ -168,7 +172,7 @@ export const LANGUAGES = [
     subtitle: "Comportamento sul suolo aziendale",
     rules: [
       "Presentarsi all’ufficio del magazzino, rispettare il posto assegnato e non allontanarsi (la copertura assicurativa decade!)",
-      "Sul suolo aziendale è obbligatorio procedere a passo d’uomo.",
+      "Sul suolo aziendale è obbligatorio procedere a velocità adeguata (max. 15 km/h).",
       "I veicoli possono sostare solo nelle aree contrassegnate.",
       "In tutta l’area aziendale vanno indossate scarpe antinfortunistiche e giubbotti catarifrangenti.",
       "I pedoni devono mantenere una distanza minima di 2,00 m dai carrelli elevatori.",
@@ -211,7 +215,7 @@ export const LANGUAGES = [
     subtitle: "Ponašanje na terenu pogona",
     rules: [
       "Javite se u skladišni ured, poštujte dodijeljeno mjesto i ne napuštajte ga (osiguranje prestaje vrijediti!)",
-      "Na terenu pogona se mora voziti brzinom koraka.",
+      "Na terenu pogona mora se voziti prilagođenom brzinom (najviše 15 km/h).",
       "Vozila se smiju ostavljati samo na za to označenim površinama.",
       "Na čitavom terenu pogona obavezno je nošenje sigurnosnih cipela i signalnog prsluka.",
       "Pješaci moraju držati sigurnosni razmak od najmanje 2,00 m od transportnih vozila.",
@@ -254,7 +258,7 @@ export const LANGUAGES = [
     subtitle: "Gedrag op het bedrijfsterrein",
     rules: [
       "Meld u bij het magazijnkantoor, houd u aan de toegewezen plaats en verlaat deze niet (de verzekeringsdekking vervalt!)",
-      "Op het bedrijfsterrein mag de rijsnelheid maximaal stapvoets zijn.",
+      "Op het bedrijfsterrein moet met aangepaste snelheid worden gereden (max. 15 km/h).",
       "Voertuigen mogen alleen op de daarvoor aangegeven plaatsen worden geparkeerd.",
       "Op het hele bedrijfsterrein dienen veiligheidsschoenen en veiligheidsvesten te worden gedragen.",
       "Voetgangers moeten een veiligheidsafstand van tenminste 2,00 m naar gemotoriseerde transportwerktuigen houden.",
@@ -297,7 +301,7 @@ export const LANGUAGES = [
     subtitle: "Sposób zachowania się na terenie zakładu",
     rules: [
       "Zgłosić się w biurze magazynu, przestrzegać wyznaczonego miejsca i nie opuszczać go (ochrona ubezpieczeniowa wygasa!)",
-      "Na terenie zakładu należy poruszać się prędkością poruszania się pieszego.",
+      "Na terenie zakładu należy poruszać się z dostosowaną prędkością (maks. 15 km/h).",
       "Pojazdy można parkować jedynie na powierzchniach, które zostały oznakowane jako powierzchnie parkingowe.",
       "Należy na terenie całego zakładu nosić obuwie ochronne i kamizelki ostrzegawcze.",
       "Piesi muszą zachowywać odstęp bezpieczeństwa wynoszący przynajmniej 2,00 m do urządzeń do transportu poziomego.",
@@ -340,7 +344,7 @@ export const LANGUAGES = [
     subtitle: "comportament în incinta întreprinderii",
     rules: [
       "Prezentaţi-vă la biroul depozitului, respectaţi locul alocat şi nu îl părăsiţi (asigurarea îşi pierde valabilitatea!)",
-      "În incinta întreprinderii se va circula numai cu viteză redusă.",
+      "În incinta întreprinderii se va circula cu viteză adaptată (max. 15 km/h).",
       "Autovehiculule se vor parca numai pe suprafeţele special marcate.",
       "Purtarea încălţămintei de siguranţă şi a vestelor de avertizare este obligatorie în întreaga incintă a întreprinderii.",
       "Pietonii trebuie să respecte o distanţă de siguranţă de minim 2,00 m faţă de vehiculele de transport uzinal.",
@@ -383,7 +387,7 @@ export const LANGUAGES = [
     subtitle: "Správanie v areáli podniku",
     rules: [
       "Ohláste sa v skladovej kancelárii, dodržiavajte pridelené miesto a neopúšťajte ho (poistné krytie zaniká!)",
-      "V areáli podniku sa musí jazdiť pomaly, krokom.",
+      "V areáli podniku sa musí jazdiť primeranou rýchlosťou (max. 15 km/h).",
       "Vozidlá sa smú odstavovať len na vyhradených plochách.",
       "V celom areáli závodu platí povinnosť nosiť bezpečnostnú obuv a reflexné vesty.",
       "Chodci musia dodržiavať bezpečný odstup k motorovým dopravným vozíkom, ktorý predstavuje minimálne 2,00 m.",
@@ -426,7 +430,7 @@ export const LANGUAGES = [
     subtitle: "Pravidla chování v areálu podniku",
     rules: [
       "Ohlaste se ve skladové kanceláři, dodržujte přidělené místo a neopouštějte je (pojistné krytí zaniká!)",
-      "V areálu podniku jezděte krokem.",
+      "V areálu podniku jezděte přiměřenou rychlostí (max. 15 km/h).",
       "Vozidla smíte odstavit pouze na vyhrazených plochách.",
       "V celém areálu podniku používejte bezpečnostní obuv a výstražnou vestu.",
       "Chodci musejí dodržovat bezpečnou vzdálenost minimálně 2,00 m od vysokozdvižných vozíků.",
@@ -469,7 +473,7 @@ export const LANGUAGES = [
     subtitle: "İşletme Sahasında Davranış",
     rules: [
       "Depo ofisine haber verin, size gösterilen yeri dikkate alın ve orayı terk etmeyin (sigorta koruması sona erer!)",
-      "İşletme sahasında yürüme hızıyla hareket edilir.",
+      "İşletme sahasında uygun hızla (azami 15 km/h) hareket edilir.",
       "Araçlar ancak işaretlenmiş alanlara bırakılabilir.",
       "Tüm işletme sahasında emniyet ayakkabısı ve emniyet yeleğinin giyilmesi zorunludur.",
       "Yayaların, istif araçlarına 2 m asgari emniyet mesafesi tutmaları gerekmektedir.",
@@ -512,7 +516,7 @@ export const LANGUAGES = [
     subtitle: "правила поведінки на території підприємства",
     rules: [
       "Повідомте про себе в офісі складу, дотримуйтеся відведеного місця та не залишайте його (страховий захист втрачає чинність!)",
-      "Слід строго дотримуватися швидкості пішоходів.",
+      "На території підприємства слід рухатися з відповідною швидкістю (макс. 15 км/год).",
       "Ставити автомобілі можна тільки на позначені місця.",
       "Слід носити захисне взуття та сигнальні жилети безпеки на сукупній території підприємства.",
       "Пішоходи повинні дотримуватися обов’язкової відстані, принаймні, 2 м до автокарів.",
@@ -555,7 +559,7 @@ export const LANGUAGES = [
     subtitle: "Поведение на територията на предприятието",
     rules: [
       "Явете се в офиса на склада, спазвайте определеното място и не го напускайте (застрахователното покритие отпада!)",
-      "На територията на предприятието се шофира със съвсем бавна скорост.",
+      "На територията на предприятието се шофира с подходяща скорост (макс. 15 км/ч).",
       "Превозните средства трябва да се паркират само на обозначените за целта площи.",
       "На цялата територия на предприятието трябва да се носят предпазни обувки и предупредителна жилетка.",
       "Пешеходците са длъжни да спазват дистанция за безопасност от поне 2,00 m до средствата за наземен транспорт.",
@@ -598,7 +602,7 @@ export const LANGUAGES = [
     subtitle: "по правилам поведения на производственной территории",
     rules: [
       "Сообщите о себе в офисе склада, соблюдайте отведённое место и не покидайте его (страховая защита прекращается!)",
-      "Скорость движения на производственной территории не должна превышать скорость пешехода.",
+      "На производственной территории следует двигаться с соответствующей скоростью (не более 15 км/ч).",
       "Транспортные средства могут быть припаркованы только в специально обозначенных местах.",
       "На всей производственной территории необходимо носить защитную обувь и светоотражающий жилет.",
       "Находящиеся на производственной территории должны соблюдать безопасное расстояние (не менее 2 метров) от автопогрузчика.",
@@ -641,7 +645,7 @@ export const LANGUAGES = [
     subtitle: "Magatartás az üzemi területen",
     rules: [
       "Jelentkezzen a raktárirodán, tartsa be a kijelölt helyet és ne hagyja el (a biztosítási védelem megszűnik!)",
-      "Az üzemi területen gyalogos tempóban kell közlekedni.",
+      "Az üzemi területen a körülményeknek megfelelő sebességgel (max. 15 km/h) kell közlekedni.",
       "A gépjárműveket kizárólag az arra kijelölt helyeken lehet leparkolni.",
       "A teljes üzemi területen kötelező a biztonsági cipők és biztonsági mellények viselése.",
       "Gyalogosoknak a targoncáktól legalább 2,00 méteres bizonsági távolságot kell tartaniuk.",
@@ -684,7 +688,7 @@ export const LANGUAGES = [
     subtitle: "Comportement sur le site de l’entreprise",
     rules: [
       "Se présenter au bureau du dépôt, respecter l’emplacement attribué et ne pas le quitter (la couverture d’assurance prend fin !)",
-      "Sur le site de l’entreprise, il faut rouler au pas.",
+      "Sur le site de l’entreprise, il faut rouler à une vitesse adaptée (max. 15 km/h).",
       "Les véhicules ne peuvent être stationnés que sur les surfaces prévues à cet effet.",
       "Le port de chaussures de sécurité et de gilets de signalisation est obligatoire sur l’ensemble du site.",
       "Les piétons doivent respecter une distance de sécurité d’au moins 2,00 m par rapport aux chariots de manutention.",
@@ -727,7 +731,7 @@ export const LANGUAGES = [
     subtitle: "Comportamiento en las instalaciones de la empresa",
     rules: [
       "Presentarse en la oficina del almacén, respetar el lugar asignado y no abandonarlo (¡la cobertura del seguro se extingue!)",
-      "En las instalaciones de la empresa se debe circular a paso de hombre.",
+      "En las instalaciones de la empresa se debe circular a velocidad adaptada (máx. 15 km/h).",
       "Los vehículos solo pueden estacionarse en las superficies señalizadas para ello.",
       "En todas las instalaciones de la empresa es obligatorio llevar calzado de seguridad y chaleco reflectante.",
       "Los peatones deben mantener una distancia de seguridad de al menos 2,00 m respecto a las carretillas elevadoras.",

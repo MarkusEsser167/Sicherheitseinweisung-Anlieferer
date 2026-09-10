@@ -43,18 +43,22 @@ gekostet hat. Seit 09.09.2026 zusätzlich **Français** und **Español**.
 > für diese App übersetzt. Ändern sich die Aushänge, müssen die Texte in
 > `js/i18n.js` nachgezogen werden.
 
-> **Abweichungen vom Unterweisungsbogen** (Stand 07.09.2026):
+> **Abweichungen vom Unterweisungsbogen** (Stand 10.09.2026):
 >
 > - **Punkt 1** ("Beim Lagerbüro melden …") stammt wortgleich vom
 >   **Betriebsgeländeschild**, steht aber nicht auf dem Unterweisungsbogen.
 >   Aufgenommen auf Anregung von HSE (C. Waltschev, Mail vom 04.09.2026).
+> - **Punkt 2:** „Schrittgeschwindigkeit" ersetzt durch **„angepasste
+>   Geschwindigkeit (max. 15 km/h)"**. Festlegung der Fachabteilung vom
+>   10.09.2026: Text und Schild (15) widersprachen sich — das Schild bleibt,
+>   der Text wird angepasst.
 > - **Punkt 5:** Abstand zu Flurförderzeugen **3,00 m → 2,00 m**. Der
 >   Unterweisungsbogen nennt 3,00 m, die Live Saving Rules des Hauses dagegen
 >   2 m; HSE hat die 2 m als verbindlich bestätigt.
 > - **Punkt 8** ("Den Anweisungen des Lagerpersonals ist Folge zu leisten") kam
 >   neu hinzu; dafür gibt es keinen offiziellen Aushangtext.
 >
-> Für Punkt 1 und 8 sind alle Fassungen eigene Übersetzungen.
+> Für Punkt 1, 2 und 8 sind alle Fassungen eigene Übersetzungen.
 > **Solange die Papieraushänge nicht nachgezogen sind, weichen App und Aushang
 > inhaltlich voneinander ab.**
 
@@ -67,7 +71,7 @@ dem **Betriebsgeländeschild** und dem **Unterweisungsbogen** nachgezeichnet
 | Punkt | Zeichen |
 |---|---|
 | 1 Lagerbüro melden | blaues Gebotszeichen mit Ausrufezeichen |
-| 2 Geschwindigkeit | rotes Rund mit **15** (nicht 5 — so steht es auf beiden Schildern) |
+| 2 Geschwindigkeit | rotes Rund mit **15** (nicht 5 — so steht es auf beiden Schildern); der Text lautet seit 10.09.2026 passend dazu „max. 15 km/h" |
 | 3 Parken | blaues P — kein Vorbild auf den Schildern, dort teilt sich der Hinweis die Zeile mit der Geschwindigkeit |
 | 4 PSA | **zwei** blaue Gebotszeichen: Fußschutz und Warnweste |
 | 5 Flurförderzeuge | gelbes Warndreieck "Warnung vor Flurförderzeugen" |
